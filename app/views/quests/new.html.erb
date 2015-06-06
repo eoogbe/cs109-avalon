@@ -1,0 +1,19 @@
+<h2>New quest data</h2>
+
+<%= simple_form_for quest do |f| %>
+  <%= f.error_notification %>
+  <fieldset>
+    <legend>Outcome</legend>
+    <%= hidden_field_tag "fails[]", "0" %>
+    <% quest.game.next_quest_players_count.times do |n| %>
+      <%= check_box_tag "fails[]", "1", false, class: "fail", id: "fails#{n}" %>
+      <%= label_tag "fails#{n}", "Fail" %>
+    <% end %>
+  </fieldset>
+  <%= f.input :players do %>
+    <%= f.collection_check_boxes :player_ids, quest.game.players, :id, :name, item_label_class: "checkbox-inline", item_wrapper_tag: false, collection_wrapper_tag: :div do |b| %>
+      <%= b.check_box(class: "quest_player_id") + b.text %>
+    <% end %>
+  <% end %>
+  <%= f.submit class: "btn btn-default", disabled: true %>
+<% end %>

@@ -1,0 +1,21 @@
+<h2>Game Analysis</h2>
+<div class="table-responsive">
+  <table id="players-table" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Probability good so far</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% game.players.each do |player| %>
+      <tr class="<%= player.prob_good_so_far > 0.5 ? "success" : "danger" %>">
+        <td class="player-name"><div class="truncate"><%= player.name %></div></td>
+        <td><%= number_to_percentage(player.prob_good_so_far * 100) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<p>Still playing? <%= link_to "Add the next quest", new_quest_path %></p>
+<p>Game over? <%= link_to "Analyze another game", new_game_path %></p>

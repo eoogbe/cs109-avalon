@@ -1,0 +1,13 @@
+$playerNamePadding: 8px;
+$playerNameWidth: 175px;
+$probWidth: 175px;
+
+#players-table {
+    width: $playerNameWidth + $playerNamePadding * 2 + $probWidth;
+    .player-name {
+        width: $playerNameWidth + $playerNamePadding * 2;
+        > div {
+            width: $playerNameWidth;
+        }
+    }
+}
