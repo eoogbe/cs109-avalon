@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore the Sass cache
-/.sass-cache/
+.sass-cache/
