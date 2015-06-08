@@ -18,14 +18,6 @@ class Game < ActiveRecord::Base
     NUM_QUEST_PLAYERS[player_idx][quests.count]
   end
   
-  def prob_good
-    @prob_good ||= num_good.to_f / num_players
-  end
-  
-  def all_unknown
-    [nil] * num_players
-  end
-  
   def num_players
     @num_players ||= players.count
   end
@@ -36,10 +28,6 @@ class Game < ActiveRecord::Base
   
   def num_bad
     @num_bad ||= num_players - num_good
-  end
-  
-  def combinations
-    @combinations ||= ([:good] * num_good + [:bad] * num_bad).permutations.to_set
   end
   
   private
