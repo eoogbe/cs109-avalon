@@ -1,5 +1,96 @@
+$highlightColor: #d9a245;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: url("/assets/stone.jpg");
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+}
+
+@media (min-width: 768px) {
+    body.container {
+        width: 675px;
+    }
+}
+
+@media (min-width: 992px) {
+    body.container {
+        width: 873px;
+    }
+}
+
+@media (min-width: 1200px) {
+    body.container {
+        width: 1053px;
+    }
+}
+
+main {
+    background: #f9f9f9;
+    padding: 20px;
+    padding-top: 10px;
+    border-radius: 1px;
+    min-height: 550px;
+}
+
+h1 {
+    margin: 0;
+    font: 56px "Cinzel Decorative";
+    color: $highlightColor;
+}
+
+h2 {
+    font-size: 32px;
+}
+
 .truncate {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn {
+    font-size: 100%;
+}
+
+.btn-sm {
+    font-size: 60%;
+}
+
+.help-block strong {
+    color: #333;
+}
+
+.help-block.text-success {
+    @extend .text-success;
+}
+
+.btn-default {
+    background-color: $highlightColor;
+    border-color: darken($highlightColor, 7%);
+    color: #fff;
+    &[disabled] {
+        background-color: $highlightColor;
+        border-color: darken($highlightColor, 7%);
+    }
+    &:active,
+    &:hover,
+    &:focus {
+        background-color: darken($highlightColor, 7%);
+        border-color: darken($highlightColor, 15%);
+        color: #fff;
+    }
+}
+
+.form-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    border-bottom: 0;
+    font-size: 100%;
 }

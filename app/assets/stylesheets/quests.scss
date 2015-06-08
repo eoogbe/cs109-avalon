@@ -1,0 +1,95 @@
+.quest_players .checkbox-inline {
+    padding-left: 0;
+}
+
+.quest_player_id {
+    display: none;
+    + .token {
+        display: inline-block;
+        margin-right: 1em;
+        &:before {
+            content: "";
+            display: inline-block;
+            width: 19px;
+            height: 25px;
+            margin-right: 0.2em;
+        }
+    }
+    &:checked {
+        + .token:before {
+            background: url("/assets/shield_small.png");
+        }
+    }
+}
+
+#fail-fields {
+    margin-bottom: 10px;
+}
+
+/* Adapted from http://codepen.io/mallendeo/pen/eLIiG */
+.fail {
+    display: none;
+    &, &:after, &:before,
+	& *, & *:after, & *:before,
+	& + .tgl-btn {
+		&::selection {
+			background: none;
+		}
+	}
+    + .tgl-btn {
+		outline: 0;
+		display: block;
+		width: 187px;
+		height: 289px;
+		position: relative;
+		cursor: pointer;
+        padding: 2px;
+		transition: all .2s ease;
+        perspective: 200px;
+		&:after, &:before{
+			content: "";
+			height: 100%;
+            display: inline-block;
+			transition: all .4s ease;
+			width: 100%;
+			position: absolute;
+			line-height: 2em;
+			font-weight: bold;
+			top: 0;
+			left: 0;
+			backface-visibility: hidden;
+			border-radius: 4px;
+		}
+		&:after{
+			left: 0;
+            background: #02C66F;
+			transform: rotateY(-180deg);
+		}
+		&:before{
+            background: url("/assets/success.jpg");
+		}
+        &:active{
+			&:before{
+				transform: rotateY(-20deg);
+			}
+		}
+	}
+    &:checked {
+		+ .tgl-btn {
+			&:after {
+                transform: rotateY(0);
+				left: 0;
+				background: url("/assets/fail.jpg");
+			}
+            &:before{
+				transform: rotateY(180deg);
+			}
+            
+            &:active{
+				&:after{
+					transform: rotateY(20deg);
+				}
+			}
+		}
+	}
+}

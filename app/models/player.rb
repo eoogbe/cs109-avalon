@@ -7,14 +7,17 @@ class Player < ActiveRecord::Base
   
   def prob_good_so_far
     @prob_good_so_far ||= begin
-      quests_as_groups = game.quests.flat_map do |quest|
+      quests_as_set = game.quests.map do |quest|
         questors = quest.players
+        questors_group = PlayerGroup.new(questors, quest.num_successes)
+        
         nonquestors = game.players.where.not(id: questors.ids)
-        [PlayerGroup.new(questors, quest.num_successes), PlayerGroup.new(nonquestors, quest.num_fails)]
-      end
-      puts name
+        num_good_nonquestors = game.num_good - quest.num_successes
+        nonquestors_group = PlayerGroup.new(nonquestors, num_good_nonquestors)
+        
+        PlayerGroupSet.new([questors_group, nonquestors_group])
+      end.reduce(:&)
       
-      quests_as_set = PlayerGroupSet.new(quests_as_groups)
       prob_quests = quests_as_set.prob(game.num_good, game.num_bad)
       
       good_quests_as_set = quests_as_set & PlayerGroupSet.singleton(self)
@@ -24,10 +27,13 @@ class Player < ActiveRecord::Base
     end
   end
   
+  def other_players
+    @other_players ||= game.players.where.not(id: id)
+  end
+  
   private
   
   def name_uniqueness
-    names = game.players.map(&:name)
-    errors.add(:name, "must be unique") if names != names.uniq
+    errors.add(:name, "must be unique") if game.players.map(&:name).count(name) > 1
   end
 end

@@ -1,24 +1,26 @@
 <h2>Start a new game analysis</h2>
 
-<%= simple_form_for game, url: game_path do |f| %>
-  <%= f.error_notification %>
-  <% if game.errors[:base].any? %>
-  <ul class="list-unstyled text-danger">
-    <% game.errors[:base].each do |msg| %>
-      <li><%= msg %></li>
+<div class="row">
+  <%= simple_form_for game, url: game_path, html: { class: "col-md-5" } do |f| %>
+    <%= f.error_notification %>
+    <% if game.errors[:base].any? %>
+    <ul class="list-unstyled text-danger">
+      <% game.errors[:base].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-  <% end %>
-  <fieldset id="players-fields">
-    <legend>Player Names</legend>
-    <%= f.simple_fields_for :players, wrapper: :with_remove_btns do |player_f| %>
-      <%= render("players/fields", f: player_f) %>
-    <% end %>
-  </fieldset>
-  <div class="row">
-    <div class="col-md-1 col-md-offset-10">
-      <%= add_player_button(f) %>
+    <fieldset id="players-fields">
+      <legend>Player Names</legend>
+      <%= f.simple_fields_for :players, wrapper: :with_remove_btns do |player_f| %>
+        <%= render("players/fields", f: player_f) %>
+      <% end %>
+    </fieldset>
+    <div class="row">
+      <div class="col-xs-1 col-xs-offset-10">
+        <%= add_player_button(f) %>
+      </div>
     </div>
-  </div>
-  <%= f.submit class: "btn btn-default" %>
-<% end %>
+    <%= f.submit class: "btn btn-default" %>
+  <% end %>
+</div>

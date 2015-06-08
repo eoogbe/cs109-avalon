@@ -132,12 +132,12 @@ SimpleForm.setup do |config|
     b.use :label, class: 'control-label'
 
     b.wrapper class: "row" do |row|
-      row.wrapper class: "col-md-10" do |input_col|
+      row.wrapper class: "col-xs-10" do |input_col|
         input_col.use :input, class: 'form-control'
         input_col.use :error, wrap_with: { tag: 'span', class: 'help-block' }
         input_col.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
       end
-      row.use :remove_btn, wrap_with: { class: "col-md-1" }
+      row.use :remove_btn, wrap_with: { class: "col-xs-1" }
     end
   end
 

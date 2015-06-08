@@ -5,7 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Avalon Goodness Predictor | CS 109</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans%7CCinzel+Decorative:700' %>
+  <%= favicon_link_tag %>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -16,12 +18,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="container">
-
-<div class="row">
-  <div class="col-md-5">
+  <h1>Avalon</h1>
+  <main>
     <%= yield %>
-  </div>
-</div>
-
+  </main>
 </body>
 </html>

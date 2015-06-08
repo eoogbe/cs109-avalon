@@ -12,7 +12,8 @@ class Game < ActiveRecord::Base
   
   has_many :quests, ->{ order(:created_at) }
   has_many :players, ->{ order(:id) }, inverse_of: :game
-  accepts_nested_attributes_for :players, limit: 10, allow_destroy: true
+  validate :num_players_valid
+  accepts_nested_attributes_for :players, allow_destroy: true
   
   def next_quest_players_count
     NUM_QUEST_PLAYERS[player_idx][quests.count]
@@ -34,5 +35,14 @@ class Game < ActiveRecord::Base
   
   def player_idx
     @player_idx ||= num_players - MIN_PLAYERS
+  end
+  
+  def num_players_valid
+    player_size = players.size
+    if player_size < 5
+      errors[:base] << "Number of players must be at least 5"
+    elsif player_size > 10
+      errors[:base] << "Number of players must be at most 10"
+    end
   end
 end

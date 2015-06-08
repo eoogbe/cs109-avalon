@@ -4,7 +4,7 @@ module SimpleForm
       include ActionView::Context
       
       def remove_btn wrapper_options = nil
-        @remove_btn ||= content_tag(:button, type: "button", class: "remove-player", "aria-label" => "Remove player") do
+        @remove_btn ||= content_tag(:button, type: "button", class: "remove-player btn btn-sm btn-danger", "aria-label" => "Remove player") do
           content_tag(:span, "", "aria-hidden" => "true", class: "glyphicon glyphicon-minus")
         end
       end

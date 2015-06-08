@@ -7,7 +7,7 @@ module GamesHelper
       render("players/fields", f: player_f)
     end.gsub("\n", "")
     
-    content_tag(:button, type: "button", id: "add-player", data: { player_id: id, fields: fields }, "aria-label" => "Add player") do
+    content_tag(:button, type: "button", class: "btn btn-success btn-sm", id: "add-player", data: { player_id: id, fields: fields }, "aria-label" => "Add player") do
       content_tag(:span, "", "aria-hidden" => "true", class: "glyphicon glyphicon-plus")
     end
   end

@@ -11,7 +11,7 @@ class PlayerGroup
   end
   
   def - other
-    if players >= other.players
+    if players > other.players
       diff_players = players - other.players
       diff_good = num_good - other.num_good
     else
@@ -26,6 +26,10 @@ class PlayerGroup
     players.intersect?(other.players)
   end
   
+  def singleton?
+    players.one?
+  end
+  
   def prob game_num_good, game_num_bad
     game_num_players = game_num_good + game_num_bad
     game_num_good.choose(num_good) * game_num_bad.choose(num_bad) / game_num_players.choose(num_players).to_f
@@ -37,6 +41,34 @@ class PlayerGroup
   
   def num_bad
     num_players - num_good
+  end
+  
+  def <= other
+    players <= other.players
+  end
+  
+  def < other
+    players < other.players
+  end
+  
+  def >= other
+    players >= other.players
+  end
+  
+  def > other
+    players > other.players
+  end
+  
+  def == other
+    eql?(other)
+  end
+  
+  def eql? other
+    players == other.players && num_good == other.num_good
+  end
+  
+  def hash
+    players.hash
   end
   
   def to_s

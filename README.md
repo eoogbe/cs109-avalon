@@ -1,5 +1,4 @@
 #cs109-avalon
-## CURRENTLY VERY BUGGY. DOESN'T WORK AT ALL
 Part 3 of the CS 109 Final Project. A website that calculates the probability
 that each person is good in a simplified version of Avalon.
 
