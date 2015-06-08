@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.1.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -42,6 +42,7 @@ gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem "byebug"
 gem 'quiet_assets', group: :development
+gem 'puma'
 
 group :production do
   gem 'pg'
